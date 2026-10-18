@@ -1,0 +1,788 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WebCraft Academy | Learn Web Development</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #6c63ff;
+            --dark: #17172e;
+            --light: #f5f6ff;
+            --white: #ffffff;
+            --text: #55556b;
+            --accent: #00c9a7;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #5148e5;
+            transform: translateY(-2px);
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 2px 15px #0000000d;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 75px;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--dark);
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .menu-btn {
+            display: none;
+            border: none;
+            background: none;
+            font-size: 27px;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 100px 0;
+            background:
+                radial-gradient(circle at top right,
+                    #ddd9ff 0, transparent 40%),
+                linear-gradient(135deg, #f5f6ff, #e9f8ff);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 45px;
+        }
+
+        .tag {
+            display: inline-block;
+            color: #5148e5;
+            background: #e4e1ff;
+            border-radius: 30px;
+            padding: 7px 14px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 58px);
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            color: var(--text);
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .hero-art {
+            background: var(--dark);
+            color: white;
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 20px 45px #17172e22;
+            overflow: hidden;
+        }
+
+        .window-bar {
+            display: flex;
+            gap: 7px;
+            margin-bottom: 22px;
+        }
+
+        .dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #ff6b6b;
+        }
+
+        .dot:nth-child(2) {
+            background: #ffd166;
+        }
+
+        .dot:nth-child(3) {
+            background: #06d6a0;
+        }
+
+        .hero-art pre {
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            color: #a9f3e4;
+            font-size: 15px;
+        }
+
+        .hero-art .code-comment {
+            color: #a6a6c2;
+        }
+
+        /* BENEFITS */
+        .benefits {
+            padding: 30px 0;
+            background: white;
+        }
+
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            text-align: center;
+        }
+
+        .benefit strong {
+            display: block;
+            font-size: 19px;
+            color: var(--primary);
+        }
+
+        .benefit p {
+            color: var(--text);
+        }
+
+        /* SECTION HEADINGS */
+        .section {
+            padding: 75px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 40px;
+        }
+
+        .section-heading h2 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            color: var(--text);
+        }
+
+        /* COURSES */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .course-card {
+            background: white;
+            padding: 28px;
+            border-radius: 14px;
+            border: 1px solid #e8e8f5;
+            transition: 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px #0000000d;
+        }
+
+        .course-icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .course-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .course-card p {
+            color: var(--text);
+            margin-bottom: 18px;
+        }
+
+        .course-card a {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* LEARNING PATH */
+        .learning-path {
+            background: white;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .step {
+            padding: 25px;
+            background: var(--light);
+            border-radius: 12px;
+        }
+
+        .step-number {
+            width: 42px;
+            height: 42px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* CODE PLAYGROUND */
+        .playground {
+            background: #17172e;
+            color: white;
+        }
+
+        .playground .section-heading p {
+            color: #c7c7df;
+        }
+
+        .playground-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .editor-panel,
+        .preview-panel {
+            min-width: 0;
+            background: #24243e;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .panel-heading {
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        #code-editor {
+            width: 100%;
+            min-height: 300px;
+            padding: 15px;
+            background: #101020;
+            color: #a9f3e4;
+            border: 1px solid #454563;
+            border-radius: 8px;
+            resize: vertical;
+            font: 14px/1.6 Consolas, monospace;
+        }
+
+        #preview-frame {
+            width: 100%;
+            height: 300px;
+            background: white;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .playground-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .reset-btn {
+            background: #41415d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 18px;
+        }
+
+        .playground-note {
+            color: #c7c7df;
+            font-size: 13px;
+            margin-top: 12px;
+        }
+
+        /* CALL TO ACTION */
+        .cta {
+            text-align: center;
+            padding: 75px 20px;
+            background: linear-gradient(135deg, #6c63ff, #8b5cf6);
+            color: white;
+        }
+
+        .cta h2 {
+            font-size: 34px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            margin-bottom: 25px;
+        }
+
+        .cta .btn {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            background: #111126;
+            color: #d3d3e7;
+        }
+
+        footer a {
+            color: #a9a2ff;
+        }
+
+        /* MOBILE */
+        @media (max-width: 800px) {
+            .menu-btn {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                padding: 22px;
+                background: white;
+                flex-direction: column;
+            }
+
+            nav.open {
+                display: flex;
+            }
+
+            .hero-grid,
+            .playground-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .course-grid,
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero {
+                padding: 70px 0;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .course-grid,
+            .steps,
+            .benefit-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 55px 0;
+            }
+
+            .section-heading h2,
+            .cta h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header>
+        <div class="container navbar">
+            <a class="logo" href="#home">WebCraft Academy.</a>
+
+            <button
+                class="menu-btn"
+                id="menu-btn"
+                aria-label="Open menu"
+                aria-expanded="false"
+                aria-controls="main-nav">
+                ☰
+            </button>
+
+            <nav id="main-nav">
+                <a href="#home">Home</a>
+                <a href="#courses">Courses</a>
+                <a href="#path">Learning Path</a>
+                <a href="#playground">Try Coding</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+                <div>
+                    <span class="tag">Your coding journey starts here</span>
+
+                    <h1>Learn to Build <span>Amazing Websites</span></h1>
+
+                    <p>
+                        Discover how websites are created using HTML, CSS,
+                        and JavaScript. Start as a beginner and build your
+                        own projects one step at a time. Want to install a code editor link below
+                    </p>
+
+                    <a href="#courses" class="btn">Explore Lessons →</a>
+                </div>
+
+                <div class="hero-art">
+                    <div class="window-bar">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+
+                    <pre><span class="code-comment">// Your first webpage</span>
+
+&lt;h1&gt;Hello, World!&lt;/h1&gt;
+
+&lt;p&gt;
+  I am learning to code.
+&lt;/p&gt;
+
+&lt;button&gt;
+  Get Started
+&lt;/button&gt;</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- BENEFITS -->
+        <section class="benefits">
+            <div class="container benefit-grid">
+                <div class="benefit">
+                    <strong>Beginner Friendly</strong>
+                    <p>Start with the fundamentals.</p>
+                </div>
+
+                <div class="benefit">
+                    <strong>Practical Projects</strong>
+                    <p>Learn by writing real code.</p>
+                </div>
+
+                <div class="benefit">
+                    <strong>Learn at Your Pace</strong>
+                    <p>Practice whenever you are ready.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- COURSES -->
+        <section class="section" id="courses">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Explore Web Development</h2>
+                    <p>
+                        Learn the three core technologies behind
+                        interactive websites.
+                    </p>
+                </div>
+
+                <div class="course-grid">
+                    <article class="course-card">
+                        <div class="course-icon">🧱</div>
+                        <h3>HTML Fundamentals</h3>
+                        <p>
+                            Learn headings, paragraphs, links, images,
+                            forms, and the structure of a webpage.
+                        </p>
+                        <a href="#playground">Try HTML →</a>
+                    </article>
+
+                    <article class="course-card">
+                        <div class="course-icon">🎨</div>
+                        <h3>CSS Styling</h3>
+                        <p>
+                            Learn colors, fonts, layouts, animations,
+                            and responsive website design.
+                        </p>
+                        <a href="#playground">Try CSS →</a>
+                    </article>
+
+                    <article class="course-card">
+                        <div class="course-icon">⚡</div>
+                        <h3>JavaScript Basics</h3>
+                        <p>
+                            Learn variables, functions, events,
+                            and how to make websites interactive.
+                        </p>
+                        <a href="#playground">Try Coding →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEARNING PATH -->
+        <section class="section learning-path" id="path">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Your Learning Roadmap</h2>
+                    <p>
+                        Follow these steps to develop your web
+                        development skills.
+                    </p>
+                </div>
+
+                <div class="steps">
+                    <article class="step">
+                        <div class="step-number">1</div>
+                        <h3>Build the Structure</h3>
+                        <p>
+                            Use HTML to add headings, text, links,
+                            images, and other webpage elements.
+                        </p>
+                    </article>
+
+                    <article class="step">
+                        <div class="step-number">2</div>
+                        <h3>Design Your Website</h3>
+                        <p>
+                            Use CSS to create beautiful colors,
+                            layouts, and mobile-friendly pages.
+                        </p>
+                    </article>
+
+                    <article class="step">
+                        <div class="step-number">3</div>
+                        <h3>Add Interactivity</h3>
+                        <p>
+                            Use JavaScript to respond to clicks,
+                            validate forms, and update page content.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE CODE PLAYGROUND -->
+        <section class="section playground" id="playground">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Try Your First Code</h2>
+                    <p>
+                        Edit the HTML and click Run Code to see
+                        the result in the preview.
+                    </p>
+                </div>
+
+                <div class="playground-grid">
+                    <div class="editor-panel">
+                        <div class="panel-heading">HTML Editor</div>
+
+                        <textarea
+                            id="code-editor"
+                            spellcheck="false"
+                            aria-label="HTML code editor"><h1>Hello, World!</h1>
+<p>I am learning to create websites.</p>
+<button onclick="this.textContent='You did it!'">
+    Click Me
+</button>
+<style>
+    body {
+        font-family: Arial;
+        padding: 20px;
+        color: #17172e;
+    }
+    h1 { color: #6c63ff; }
+    button {
+        padding: 10px 15px;
+        background: #6c63ff;
+        color: white;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style></textarea>
+
+                        <div class="playground-actions">
+                            <button class="btn" id="run-code">
+                                ▶ Run Code
+                            </button>
+
+                            <button class="reset-btn" id="reset-code">
+                                Reset
+                            </button>
+                        </div>
+
+                        <p class="playground-note">
+                            This demo runs HTML in an isolated preview.
+                            Only enter code you understand and trust.
+                        </p>
+                    </div>
+
+                    <div class="preview-panel">
+                        <div class="panel-heading">Live Preview</div>
+
+                        <iframe
+                            id="preview-frame"
+                            title="Your website preview"
+                            sandbox="allow-scripts">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CALL TO ACTION -->
+        <section class="cta">
+            <div class="container">
+                <h2>Your First Website Is Within Reach</h2>
+
+                <p>
+                    Keep practicing, experiment with new ideas,
+                    and turn your creativity into real projects.
+                </p>
+
+                <a href="#playground" class="btn">
+                    Start Building Now  <a href="https://www.sublimetext.com/download" target="_blank" rel="noopener noreferrer">
+   Download Sublime Text 
+    
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <h3>WebCraft Academy</h3>
+            <p>Learn to code. Create something amazing.</p>
+            <p>
+                &copy; <span id="year"></span>
+                WebCraft Academy. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // MOBILE MENU
+        const menuButton = document.getElementById("menu-btn");
+        const nav = document.getElementById("main-nav");
+
+        menuButton.addEventListener("click", function () {
+            const isOpen = nav.classList.toggle("open");
+
+            menuButton.setAttribute("aria-expanded", isOpen);
+            menuButton.setAttribute(
+                "aria-label",
+                isOpen ? "Close menu" : "Open menu"
+            );
+            menuButton.textContent = isOpen ? "✕" : "☰";
+        });
+
+        nav.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                nav.classList.remove("open");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.setAttribute("aria-label", "Open menu");
+                menuButton.textContent = "☰";
+            });
+        });
+
+        // CODE PLAYGROUND
+        const editor = document.getElementById("code-editor");
+        const preview = document.getElementById("preview-frame");
+
+        const starterCode = editor.value;
+
+        function runCode() {
+            preview.srcdoc = editor.value;
+        }
+
+        document.getElementById("run-code")
+            .addEventListener("click", runCode);
+
+        document.getElementById("reset-code")
+            .addEventListener("click", function () {
+                editor.value = starterCode;
+                runCode();
+            });
+
+        // SHOW THE FIRST EXAMPLE
+        runCode();
+
+        // AUTOMATIC COPYRIGHT YEAR
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
+    
+
+</body>
+</html>
